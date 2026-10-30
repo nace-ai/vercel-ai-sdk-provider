@@ -1,0 +1,42 @@
+{
+  "model": "drex-max-v1.1",
+  "answers": {
+    "wants_refund": {
+      "type": "noul",
+      "noul": 0.9937184845453066,
+      "confidence": 0.9937184845453066
+    },
+    "angry": {
+      "type": "noul",
+      "noul": 0.7300119617584933,
+      "confidence": 0.7300119617584933
+    },
+    "topic": {
+      "type": "choice",
+      "choice": "shipping",
+      "confidence": 0.898915388382599,
+      "probabilities": {
+        "billing": 0.061881060914895654,
+        "shipping": 0.9326102589217327,
+        "other": 0.00550868016337172
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "score": 0.9860591516937378,
+      "legend": ["Not urgent", "Somewhat urgent", "Very urgent"],
+      "probabilities": {
+        "0": 0.0842649557868767,
+        "1": 0.8454109367325087,
+        "2": 0.07032410748061457
+      },
+      "confidence": 0.7681164050987631
+    }
+  },
+  "usage": {
+    "input_tokens": 214,
+    "output_tokens": 340
+  },
+  "evaluation_time_ms": 732.3,
+  "request_id": "req_00000000000000000000000000000002"
+}

@@ -1,0 +1,86 @@
+{
+  "name": "nace-ai-provider",
+  "version": "0.1.0",
+  "description": "Nace provider for the AI SDK: Drex decision models for experimental_decide, called directly with a Nace API key.",
+  "license": "MIT",
+  "author": "Nace",
+  "homepage": "https://github.com/nace-ai/nace-ai-provider#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nace-ai/nace-ai-provider.git"
+  },
+  "bugs": "https://github.com/nace-ai/nace-ai-provider/issues",
+  "keywords": [
+    "ai",
+    "ai-sdk",
+    "vercel-ai-sdk",
+    "nace",
+    "drex",
+    "decision-model",
+    "classifier"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "pnpm test:node && pnpm test:edge",
+    "test:node": "vitest run --config vitest.node.config.ts",
+    "test:edge": "vitest run --config vitest.edge.config.ts",
+    "test:live": "vitest run --config vitest.live.config.ts",
+    "check:pack": "publint && attw --pack . --profile node16",
+    "smoke": "node scripts/smoke-pack.mjs"
+  },
+  "dependencies": {
+    "@ai-sdk/provider": "^4.0.34",
+    "@ai-sdk/provider-utils": "^5.0.71"
+  },
+  "peerDependencies": {
+    "zod": "^3.25.76 || ^4.1.8"
+  },
+  "devDependencies": {
+    "@ai-sdk/test-server": "^2.0.4",
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@biomejs/biome": "^2.6.4",
+    "@edge-runtime/vm": "^5.0.0",
+    "@types/node": "^24.19.2",
+    "ai": "^7.0.157",
+    "publint": "^0.3.25",
+    "tsdown": "^0.23.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5",
+    "zod": "^4.6.7"
+  },
+  "packageManager": "pnpm@11.9.0"
+}
