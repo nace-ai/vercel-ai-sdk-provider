@@ -1,25 +1,25 @@
 # Nace provider for the AI SDK
 
-`nace-ai-provider` runs [Drex](https://console.nace.ai/docs/drex) decision models from the [AI SDK](https://ai-sdk.dev)'s `experimental_decide`. It calls Nace directly with a Nace API key. It is not the Vercel AI Gateway.
+`@nace-ai/ai-sdk-provider` runs [Drex](https://console.nace.ai/docs/drex) decision models from the [AI SDK](https://ai-sdk.dev)'s `experimental_decide`. It calls Nace directly with a Nace API key. It is not the Vercel AI Gateway.
 
 Drex answers yes-or-no, choice and score questions about a shared state of text, JSON and images, with a probability for every answer.
 
 ## Setup
 
 ```bash
-npm install nace-ai-provider ai
+npm install @nace-ai/ai-sdk-provider ai
 ```
 
 Create a key in the [Nace console](https://console.nace.ai) and set it as `NACE_API_KEY`.
 
 ```ts
-import { nace } from 'nace-ai-provider';
+import { nace } from '@nace-ai/ai-sdk-provider';
 ```
 
 `createNace` takes these settings:
 
 ```ts
-import { createNace } from 'nace-ai-provider';
+import { createNace } from '@nace-ai/ai-sdk-provider';
 
 const nace = createNace({
   apiKey: process.env.NACE_API_KEY, // the default
@@ -49,7 +49,7 @@ Drex bills input tokens only, as `usage.inputTokens` reports them, and only for 
 
 ```ts
 import { experimental_decide as decide } from 'ai';
-import { nace } from 'nace-ai-provider';
+import { nace } from '@nace-ai/ai-sdk-provider';
 
 const { answers, providerMetadata } = await decide({
   model: nace.decisionModel('drex-v2.0'),
@@ -89,7 +89,7 @@ Drex Max reads images. Put them in the state as file parts. They reach the model
 ```ts
 import { readFile } from 'node:fs/promises';
 import { experimental_decide as decide } from 'ai';
-import { nace } from 'nace-ai-provider';
+import { nace } from '@nace-ai/ai-sdk-provider';
 
 const { answers } = await decide({
   model: nace.decisionModel('drex-max-v1.1'),
