@@ -3,7 +3,7 @@
  * Install the package the way a user would and check it works.
  *
  *   node scripts/smoke-pack.mjs              # pack this checkout
- *   node scripts/smoke-pack.mjs --registry   # install nace-ai-provider@<version> from npm
+ *   node scripts/smoke-pack.mjs --registry   # install @nace-ai/ai-sdk-provider@<version> from npm
  *
  * In a fresh temp project: installs the package with `ai`, imports it from ESM
  * and CommonJS, type-checks a TypeScript user file, and, when NACE_API_KEY is
@@ -60,7 +60,7 @@ run(
 
 writeFileSync(
   join(dir, 'esm.mjs'),
-  `import { createNace, nace, VERSION } from 'nace-ai-provider';
+  `import { createNace, nace, VERSION } from '@nace-ai/ai-sdk-provider';
 if (VERSION !== ${JSON.stringify(pkg.version)}) throw new Error('wrong version ' + VERSION);
 if (typeof createNace !== 'function' || nace.decisionModel('drex-v2.0').provider !== 'nace.decision') throw new Error('bad exports');
 console.log('esm: ok', VERSION);
@@ -68,7 +68,7 @@ console.log('esm: ok', VERSION);
 );
 writeFileSync(
   join(dir, 'cjs.cjs'),
-  `const { createNace, VERSION } = require('nace-ai-provider');
+  `const { createNace, VERSION } = require('@nace-ai/ai-sdk-provider');
 if (typeof createNace !== 'function') throw new Error('bad exports');
 console.log('cjs: ok', VERSION);
 `,

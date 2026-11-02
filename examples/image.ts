@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
+import { nace } from '@nace-ai/ai-sdk-provider';
 import { experimental_decide as decide } from 'ai';
-import { nace } from 'nace-ai-provider';
 
 const { answers } = await decide({
   model: nace.decisionModel('drex-max-v1.1'),

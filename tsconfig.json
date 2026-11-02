@@ -15,7 +15,7 @@
     "noEmit": true,
     "types": ["node"],
     "paths": {
-      "nace-ai-provider": ["./src/index.ts"]
+      "@nace-ai/ai-sdk-provider": ["./src/index.ts"]
     }
   },
   "include": ["src", "examples", "live", "*.config.ts"]

@@ -1,10 +1,10 @@
 {
-  "name": "nace-ai-provider",
+  "name": "@nace-ai/ai-sdk-provider",
   "version": "0.1.0",
   "description": "Nace provider for the AI SDK: Drex decision models for experimental_decide, called directly with a Nace API key.",
   "license": "MIT",
   "author": "Nace",
-  "homepage": "https://github.com/nace-ai/nace-ai-provider#readme",
+  "homepage": "https://console.nace.ai/docs/integrations/vercel-ai-sdk",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nace-ai/nace-ai-provider.git"
