@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NACE_LIVE_API_KEY: ${{ secrets.NACE_API_KEY_LIVE }}
+      NACE_REQUIRE_LIVE: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

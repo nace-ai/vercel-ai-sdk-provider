@@ -7,10 +7,12 @@ Drex answers yes-or-no, choice and score questions about a shared state of text,
 ## Setup
 
 ```bash
-npm install @nace-ai/ai-sdk-provider ai
+npm install @nace-ai/ai-sdk-provider ai@^7 zod
 ```
 
 Create a key in the [Nace console](https://console.nace.ai) and set it as `NACE_API_KEY`.
+
+Requires Node.js 22 or newer and AI SDK 7 (`ai >=7.0.157 <8`). This package implements `DecisionModelV4` for `experimental_decide`; it does not select downstream LLMs through Drex Router's `/v1/route` endpoint. Router-backed model selection is a separate extension.
 
 ```ts
 import { nace } from '@nace-ai/ai-sdk-provider';
@@ -133,3 +135,5 @@ A failed request throws the AI SDK's `APICallError` with Nace's message and stat
 ## License
 
 MIT
+
+Maintainers: see [RELEASING.md](https://github.com/nace-ai/nace-ai-provider/blob/main/RELEASING.md) for validation, the first npm publication and subsequent releases. Merging a PR does not publish the package.

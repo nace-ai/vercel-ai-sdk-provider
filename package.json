@@ -51,6 +51,7 @@
   },
   "scripts": {
     "build": "tsdown",
+    "prepack": "pnpm build",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "format": "biome check --write .",

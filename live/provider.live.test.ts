@@ -5,6 +5,11 @@ import { describe, expect, it } from 'vitest';
 import { createNace } from '../src';
 
 const apiKey = process.env.NACE_LIVE_API_KEY;
+if (process.env.NACE_REQUIRE_LIVE === '1' && !apiKey) {
+  throw new Error(
+    'NACE_LIVE_API_KEY is required for this live contract run. Configure the NACE_API_KEY_LIVE Actions secret.',
+  );
+}
 const bypass = process.env.NACE_LIVE_VERCEL_BYPASS;
 const nace = createNace({
   apiKey,
