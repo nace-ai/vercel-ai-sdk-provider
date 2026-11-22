@@ -7,9 +7,9 @@
   "homepage": "https://console.nace.ai/docs/integrations/vercel-ai-sdk",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nace-ai/nace-ai-provider.git"
+    "url": "git+https://github.com/nace-ai/vercel-ai-sdk-provider.git"
   },
-  "bugs": "https://github.com/nace-ai/nace-ai-provider/issues",
+  "bugs": "https://github.com/nace-ai/vercel-ai-sdk-provider/issues",
   "keywords": [
     "ai",
     "ai-sdk",
@@ -51,6 +51,7 @@
   },
   "scripts": {
     "build": "tsdown",
+    "prepack": "pnpm build",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "format": "biome check --write .",

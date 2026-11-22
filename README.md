@@ -7,10 +7,12 @@ Drex answers yes-or-no, choice and score questions about a shared state of text,
 ## Setup
 
 ```bash
-npm install @nace-ai/ai-sdk-provider ai
+npm install @nace-ai/ai-sdk-provider ai@^7 zod
 ```
 
 Create a key in the [Nace console](https://console.nace.ai) and set it as `NACE_API_KEY`.
+
+Requires Node.js 22 or newer and AI SDK 7 (`ai >=7.0.157 <8`). This package implements `DecisionModelV4` for `experimental_decide`; it does not select downstream LLMs through Drex Router's `/v1/route` endpoint. Router-backed model selection is a separate extension.
 
 ```ts
 import { nace } from '@nace-ai/ai-sdk-provider';
@@ -35,13 +37,10 @@ const nace = createNace({
 
 ## Models
 
-| Model           | Input                                                | Per 1M input tokens |
-| --------------- | ---------------------------------------------------- | ------------------- |
-| `drex-max-v1.1` | text, JSON, images                                   | $0.03               |
-| `drex-max`      | text, JSON, images                                   | $0.03               |
-| `drex-v2.0`     | text, JSON                                           | $0.06               |
-| `drex-v1.5`     | text, JSON                                           | $0.05               |
-| `drex-latest`   | an alias for the current text model, now `drex-v2.0` |                     |
+The examples use `drex-latest`, the moving alias for the current default model.
+The [model catalog](https://console.nace.ai/docs/drex/reference/models) documents
+its current target and image support. Use an active versioned model id when you
+need to control model upgrades; the response reports the version that answered.
 
 Drex bills input tokens only, as `usage.inputTokens` reports them, and only for a successful request. Image tokens count as input. Any other model id is sent as is. [Models](https://console.nace.ai/docs/drex/reference/models) and [Pricing](https://console.nace.ai/docs/drex/reference/pricing) have the current list.
 
@@ -52,7 +51,7 @@ import { experimental_decide as decide } from 'ai';
 import { nace } from '@nace-ai/ai-sdk-provider';
 
 const { answers, providerMetadata } = await decide({
-  model: nace.decisionModel('drex-v2.0'),
+  model: nace.decisionModel('drex-latest'),
   state: 'My order #1042 arrived broken and I want my money back.',
   questions: {
     refund: {
@@ -92,7 +91,7 @@ import { experimental_decide as decide } from 'ai';
 import { nace } from '@nace-ai/ai-sdk-provider';
 
 const { answers } = await decide({
-  model: nace.decisionModel('drex-max-v1.1'),
+  model: nace.decisionModel('drex-latest'),
   state: [
     { type: 'text', text: 'Image 1 and Image 2 are product photos.' },
     { type: 'file', mediaType: 'image/png', data: await readFile('red.png') },
@@ -133,3 +132,5 @@ A failed request throws the AI SDK's `APICallError` with Nace's message and stat
 ## License
 
 MIT
+
+Maintainers: see [RELEASING.md](https://github.com/nace-ai/vercel-ai-sdk-provider/blob/main/RELEASING.md) for validation, the first npm publication and subsequent releases. Merging a PR does not publish the package.

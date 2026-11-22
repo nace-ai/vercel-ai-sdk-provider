@@ -2,7 +2,7 @@ import { nace } from '@nace-ai/ai-sdk-provider';
 import { experimental_decide as decide } from 'ai';
 
 const { answers, providerMetadata, usage } = await decide({
-  model: nace.decisionModel('drex-v2.0'),
+  model: nace.decisionModel('drex-latest'),
   state: 'My order #1042 arrived broken and I want my money back.',
   questions: {
     refund: {

@@ -23,8 +23,10 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm build
       - run: pnpm check:pack
-      - name: Install the packed tarball in a fresh project
-        run: node scripts/smoke-pack.mjs
+      - name: Pack from a clean build directory and install in a fresh project
+        run: |
+          rm -rf dist
+          node scripts/smoke-pack.mjs
 
   test:
     runs-on: ubuntu-latest
