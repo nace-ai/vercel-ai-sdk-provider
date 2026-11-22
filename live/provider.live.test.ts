@@ -111,7 +111,18 @@ describe.skipIf(!apiKey)('live Drex', () => {
     expect(rejected).toMatchObject({
       statusCode: 422,
       isRetryable: false,
-      message: expect.stringContaining('images require drex-max'),
     });
+    const error = rejected as APICallError;
+    const body = JSON.parse(error.responseBody ?? '{}');
+    expect(body).toMatchObject({
+      error: {
+        type: 'invalid_request_error',
+        message: expect.stringMatching(/\S/),
+        issues: expect.arrayContaining([
+          expect.objectContaining({ path: 'images' }),
+        ]),
+      },
+    });
+    expect(error.message).toBe(body.error.message);
   });
 });
