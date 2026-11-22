@@ -117,6 +117,7 @@ describe.skipIf(!apiKey)('live Drex', () => {
     expect(body).toMatchObject({
       error: {
         type: 'invalid_request_error',
+        message: expect.stringMatching(/\S/),
         issues: expect.arrayContaining([
           expect.objectContaining({ path: 'images' }),
         ]),
