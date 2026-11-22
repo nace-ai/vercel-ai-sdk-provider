@@ -61,13 +61,13 @@ Do not push `v0.1.0` after manually publishing it: that would ask the tag workfl
 
 Configure the npm package's trusted publisher for GitHub Actions:
 
-| Setting           | Value               |
-| ----------------- | ------------------- |
-| Organization      | `nace-ai`           |
-| Repository        | `nace-ai-provider`  |
-| Workflow filename | `release.yml`       |
-| Environment       | `npm-release`       |
-| Permission        | Allow `npm publish` |
+| Setting           | Value                    |
+| ----------------- | ------------------------ |
+| Organization      | `nace-ai`                |
+| Repository        | `vercel-ai-sdk-provider` |
+| Workflow filename | `release.yml`            |
+| Environment       | `npm-release`            |
+| Permission        | Allow `npm publish`      |
 
 Create the matching GitHub `npm-release` environment. Add a required reviewer if each release should have an approval click. Configure the trusted publisher shortly before the next release: a new, unused configuration expires after two days. Private source repositories can publish public packages, but do not get provenance; the workflow already handles that. See [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/).
 

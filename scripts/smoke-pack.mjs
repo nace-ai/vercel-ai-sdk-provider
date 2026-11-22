@@ -98,6 +98,7 @@ import { createNace, VERSION } from '@nace-ai/ai-sdk-provider';
 let requests = 0;
 const nace = createNace({
   apiKey: 'artifact-test-key',
+  baseURL: 'https://console.nace.ai/v1',
   fetch: async (url, init) => {
     requests++;
     assert.equal(url, 'https://console.nace.ai/v1/systemone');

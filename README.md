@@ -37,13 +37,10 @@ const nace = createNace({
 
 ## Models
 
-| Model           | Input                                                | Per 1M input tokens |
-| --------------- | ---------------------------------------------------- | ------------------- |
-| `drex-max-v1.1` | text, JSON, images                                   | $0.03               |
-| `drex-max`      | text, JSON, images                                   | $0.03               |
-| `drex-v2.0`     | text, JSON                                           | $0.06               |
-| `drex-v1.5`     | text, JSON                                           | $0.05               |
-| `drex-latest`   | an alias for the current text model, now `drex-v2.0` |                     |
+The examples use `drex-latest`, the moving alias for the current default model.
+The [model catalog](https://console.nace.ai/docs/drex/reference/models) documents
+its current target and image support. Use an active versioned model id when you
+need to control model upgrades; the response reports the version that answered.
 
 Drex bills input tokens only, as `usage.inputTokens` reports them, and only for a successful request. Image tokens count as input. Any other model id is sent as is. [Models](https://console.nace.ai/docs/drex/reference/models) and [Pricing](https://console.nace.ai/docs/drex/reference/pricing) have the current list.
 
@@ -54,7 +51,7 @@ import { experimental_decide as decide } from 'ai';
 import { nace } from '@nace-ai/ai-sdk-provider';
 
 const { answers, providerMetadata } = await decide({
-  model: nace.decisionModel('drex-v2.0'),
+  model: nace.decisionModel('drex-latest'),
   state: 'My order #1042 arrived broken and I want my money back.',
   questions: {
     refund: {
@@ -94,7 +91,7 @@ import { experimental_decide as decide } from 'ai';
 import { nace } from '@nace-ai/ai-sdk-provider';
 
 const { answers } = await decide({
-  model: nace.decisionModel('drex-max-v1.1'),
+  model: nace.decisionModel('drex-latest'),
   state: [
     { type: 'text', text: 'Image 1 and Image 2 are product photos.' },
     { type: 'file', mediaType: 'image/png', data: await readFile('red.png') },
@@ -136,4 +133,4 @@ A failed request throws the AI SDK's `APICallError` with Nace's message and stat
 
 MIT
 
-Maintainers: see [RELEASING.md](https://github.com/nace-ai/nace-ai-provider/blob/main/RELEASING.md) for validation, the first npm publication and subsequent releases. Merging a PR does not publish the package.
+Maintainers: see [RELEASING.md](https://github.com/nace-ai/vercel-ai-sdk-provider/blob/main/RELEASING.md) for validation, the first npm publication and subsequent releases. Merging a PR does not publish the package.
